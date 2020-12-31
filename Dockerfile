@@ -7,4 +7,5 @@ RUN npm run build
 
 #this is just copying the build content in the production envionment
 FROM nginx
+EXPOSE 80
 COPY --from=0 /app/build /usr/share/nginx/html
