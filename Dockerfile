@@ -1,0 +1,10 @@
+FROM node:alpine
+WORKDIR '/app'
+COPY package.json .
+RUN npm install
+COPY . .
+RUN npm run build
+
+#this is just copying the build content in the production envionment
+FROM nginx
+COPY --from=0 /app/build /usr/share/nginx/html
