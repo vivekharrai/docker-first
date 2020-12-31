@@ -8,3 +8,16 @@ before_install:
 
 script:
   - docker run -e CI=true vivekjain/docker-first npm run test 
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "firstdocker"
+  env: "Firstdocker-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-764522026092"
+  bucket_path: "firstdocker"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_ACCESS_SECRET"
